@@ -117,5 +117,47 @@
             </a>
         </div>
     </div>
+        <script>
+let audio = new Audio("https://files.catbox.moe/xxvdw5.mp3");
+let volume = 0.5;
+
+function startMusicPlayback() {
+    audio.play();
+}
+
+function handleClickToPlay() {
+    startMusicPlayback();
+}
+
+document.addEventListener('click', handleClickToPlay);
+
+audio.addEventListener('ended', function() {
+    startMusicPlayback();
+});
+
+function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+        return parts.pop().split(";").shift();
+    }
+}
+
+const playMusicCookie = getCookie("playMusic");
+
+if (playMusicCookie !== "true") {
+    document.cookie = "playMusic=true; expires=" + new Date(Date.now() + 86400000).toUTCString();
+} else {
+    startMusicPlayback();
+}
+
+function setVolume(vol) {
+    if (vol >= 0 && vol <= 1) {
+        audio.volume = vol;
+    }
+}
+
+setVolume(volume);
+</script>
 </body>
 </html>
