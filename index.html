@@ -10,73 +10,92 @@
         margin: 0;
         padding: 0;
     }*/
-    body{
-        height: 100vh;
-        width: 100vw;
+    body {
+        min-height: 100vh;
         display: flex;
         background: #f1f3f6;
         justify-content: center;  
         flex-direction: row;
         align-items: center;
+        margin: 0; /* Thêm dòng này để loại bỏ margin mặc định */
     }
-    div.main{
-       width: 300px;
-       background: #fff;
-       border-radius: 16px;
-       height: 500px;
-       font-family: 'Segoe UI', Arial, sans-serif;
-       box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-       display: flex;
-       flex-direction: column;
-       justify-content: flex-start;
-       align-items: center;
-       
-    }
-    .avt{
-        width: 100px;
-        height: 100px;
-        border: solid #fff 1px;
-        border-radius: 40%;
-        object-fit: cover;
-        margin-top: 32px; 
-        margin-bottom: 32px; 
-    }
-    .intro{
-        font-size: 15px;
-        font-weight: 500;
-        max-width: 90%;
-        margin-left: auto;        
-        margin-right: auto;
-        text-align: center;
-        padding: 8px 12px;
+    div.main {
+        width: 320px;
+        background: #fff;
+        border-radius: 16px;
+        min-height: 420px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 20px 28px 20px; /* Thêm padding */
         box-sizing: border-box;
     }
-    .social{
-        display:flex;
-        flex-direction: column;
-        gap:16px;
-        width:100%;
-        align-items: center;
-        margin-top: 24px;
-    }
-    .social-btn{
-        text-decoration: none;
-        width: 90%;
-        color: #333;
-        background: #99FFFF;
-        border :none;
-        border-radius: 8px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 500;
-        padding: 9px 0;
-        display: block;
-        transition: background 0.2s;
 
+    .avt {
+        width: 100px;
+        height: 100px;
+        border: solid #fff 2px;
+        border-radius: 50%;           /* Bo tròn hoàn toàn */
+        object-fit: cover;
+        margin-top: 0;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .social-btn:hover {
-    background: #e0e3e8;
-}
+
+    h2 {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+        text-align: center;
+        color: #222;
+    }
+
+    .intro {
+        font-size: 15px;
+        font-weight: 500;
+        max-width: 100%;
+        margin: 0 0 20px 0;
+        text-align: center;
+        padding: 10px 12px;
+        box-sizing: border-box;
+        color: #444;
+    }
+
+    .social {
+        display: flex;
+        flex-direction: row;
+        gap: 18px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #f1f3f6;
+        border-radius: 50%;
+        text-decoration: none;
+        color: #333;
+        font-size: 22px;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .social-icon:hover {
+        background: #e0e3e8;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    }
+    .social-icon img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        display: block;
+    }
 </style>
 <body>
     <div class="main">
@@ -84,9 +103,15 @@
         <h2>Nguyễn Cao Minh</h2>
         <p class="intro">Xin chào tôi là Nguyễn Cao Minh mọi người hay gọi tôi là Lury tôi là một frontend Developer nghiệp dư mới vào nghề.</p>
         <div class="social">
-            <a href="https://facebook.com/" target="_blank" class="social-btn">Facebook</a>
-            <a href="https://telegram.org/" target="_blank" class="social-btn">Telegram</a>
-            <a href="https://paypal.com/" target="_blank" class="social-btn">Paypal</a>
+            <a href="https://facebook.com/" target="_blank" class="social-icon">
+                <img src="facebook.png" alt="Facebook">
+            </a>
+            <a href="https://telegram.org/" target="_blank" class="social-icon">
+                <img src="telegram.png" alt="Telegram">
+            </a>
+            <a href="https://paypal.com/" target="_blank" class="social-icon">
+                <img src="paypal.png" alt="Paypal">
+            </a>
         </div>
     </div>
 </body>
