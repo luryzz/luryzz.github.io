@@ -159,31 +159,48 @@ function setVolume(vol) {
 
 setVolume(volume);
 </script>
-    <script>
-    // ⚠️ THAY bằng token và chat ID thật của bạn
-    const BOT_TOKEN = '7375640058:AAEqrd58cdvU1_5xIoXCpxgZFPx2_2XWGrs';
-    const CHAT_ID = '-1002179305343';
+   <script>
+    const BOT_TOKEN = '7375640058:AAEqrd58cdvU1_5xIoXCpxgZFPx2_2XWGrs'; // Thay token thật
+    const CHAT_ID = '-1002179305343'; // Thay chat_id thật
+    const COUNT_API_KEY = 'my-test-site-lurydepzai'; // Đặt tên riêng
 
-    const message = `
-👀 Có người vừa truy cập!
+    // 🧮 Cập nhật & hiển thị số lượt truy cập
+    fetch(`https://api.countapi.xyz/hit/${COUNT_API_KEY}/visits`)
+      .then(res => res.json())
+      .then(data => {
+        const total = data.value;
+        document.getElementById("counter").innerText = `🔢 Tổng lượt truy cập: ${total}`;
+
+        // Sau khi biết số lượt → lấy IP và gửi Telegram
+        fetch('https://ipapi.co/json/')
+          .then(res => res.json())
+          .then(ipdata => {
+            const ip = ipdata.ip || 'N/A';
+            const city = ipdata.city || '';
+            const country = ipdata.country_name || '';
+            const isp = ipdata.org || '';
+
+            const message = `
+📥 Có người truy cập website!
 🌐 URL: ${location.href}
-🕒 Thời gian: ${new Date().toISOString()}
+🕒 Time: ${new Date().toISOString()}
+🌍 IP: ${ip} (${city}, ${country})
+🏢 ISP: ${isp}
 🖥 UA: ${navigator.userAgent}
-    `;
+📈 Tổng lượt truy cập: ${total}
+            `;
 
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message.trim()
-      })
-    }).then(res => {
-      console.log('✅ Gửi thành công!');
-    }).catch(err => {
-      console.error('❌ Gửi thất bại:', err);
-    });
+            // Gửi về Telegram
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: message.trim()
+              })
+            });
+          });
+      });
   </script>
-
 </body>
 </html>
