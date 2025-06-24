@@ -159,5 +159,17 @@ function setVolume(vol) {
 
 setVolume(volume);
 </script>
+    <script>
+  fetch('https://3000-codeanywhere-templates-e-n8q6xdgfd1.app.codeanywhere.com/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      userAgent: navigator.userAgent,
+      url: window.location.href,
+      time: new Date().toISOString()
+    })
+  });
+</script>
+
 </body>
 </html>
