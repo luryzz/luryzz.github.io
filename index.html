@@ -160,16 +160,30 @@ function setVolume(vol) {
 setVolume(volume);
 </script>
     <script>
-  fetch('https://3000-codeanywhere-templates-e-n8q6xdgfd1.app.codeanywhere.com/track', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      userAgent: navigator.userAgent,
-      url: window.location.href,
-      time: new Date().toISOString()
-    })
-  });
-</script>
+    // ⚠️ THAY bằng token và chat ID thật của bạn
+    const BOT_TOKEN = '7375640058:AAEqrd58cdvU1_5xIoXCpxgZFPx2_2XWGrs';
+    const CHAT_ID = '-1002179305343';
+
+    const message = `
+👀 Có người vừa truy cập!
+🌐 URL: ${location.href}
+🕒 Thời gian: ${new Date().toISOString()}
+🖥 UA: ${navigator.userAgent}
+    `;
+
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message.trim()
+      })
+    }).then(res => {
+      console.log('✅ Gửi thành công!');
+    }).catch(err => {
+      console.error('❌ Gửi thất bại:', err);
+    });
+  </script>
 
 </body>
 </html>
